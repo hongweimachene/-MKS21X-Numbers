@@ -1,8 +1,5 @@
 public class RealNumber{
   private double n;
-  public RealNumber() {
-    n = 10;
-  }
   public RealNumber(double number) {
     n = number;
   }
@@ -10,6 +7,6 @@ public class RealNumber{
     return n;
   }
   public String toString() {
-    return "";
+    return "" + n;
   }
 }
