@@ -2,11 +2,12 @@ public class RationalNumber extends RealNumber{
   private int numerator, denominator;
   public RationalNumber(int nume, int deno) {
     super(0.0);
-    numerator = nume;
-    denominator = deno;
     if (deno == 0) {
       numerator = 0;
       denominator = 1;
+    } else {
+      numerator = nume;
+      denominator = deno;
     }
     reduce();
   }
@@ -32,14 +33,12 @@ public class RationalNumber extends RealNumber{
   }
 
   private static int gcd(int a, int b) {
-    int r = 1;
     int x = Math.max(Math.abs(a), Math.abs(b));
     int y = Math.min(Math.abs(a), Math.abs(b));
-    r = x % y;
-    if (r == 0) {
-      return y;
+    if (y == 0) {
+      return x;
     } else {
-      return gcd(y, r);
+      return gcd(y, x % y);
     }
   }
 
