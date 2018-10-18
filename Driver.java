@@ -74,18 +74,18 @@ public class Driver { //
     System.out.println("Reciprocal of Rational Number d (should print... eh let's not go there)");
     System.out.println("----------");
 
-    System.out.print("[a == a] (should print true): ");
+    System.out.print("a == a (should print true): ");
     System.out.println(((RationalNumber)a).equals(a));
-    System.out.print("[a == b] (should print false): ");
+    System.out.print("a == b (should print false): ");
     System.out.println(a.equals(b));
-    System.out.print("[a == c] (should print false): ");
+    System.out.print("a == c (should print false): ");
     System.out.println(a.equals(c));
     System.out.println("----------");
 
     System.out.print("Numerator of Rational Number c (should print -1): ");
-    System.out.println(c.getNumerator());
+    System.out.println(c.getNumer());
     System.out.print("Denominator of Rational Number c (should print 2): ");
-    System.out.println(c.getDenominator());
+    System.out.println(c.getDeno());
     System.out.println("----------");
 
     // RationalNumber operations
@@ -117,11 +117,12 @@ public class Driver { //
     System.out.println("rat1 should be 5/2: "+ rat1);
     System.out.println("rea1 should be 1.0: "+ rea1);
 
-    // Time to break your code
+    /* Time to break your code
     System.out.println("\noverflow problems?");
     c = new RationalNumber(-2147483648, 2147483647); System.out.println("c = "+c);
     d = new RationalNumber(2147483647, -1073741824); System.out.println("d = "+d);
     System.out.println("c * d (should print 2): "+c.multiply(d));
+    */
   }
 
 }
