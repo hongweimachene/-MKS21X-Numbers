@@ -1,12 +1,13 @@
 public class RationalNumber extends RealNumber{
   private int numerator, denominator;
   public RationalNumber(int nume, int deno) {
+    super(0.0);
+    numerator = nume;
+    denominator = deno;
     if (deno == 0) {
       numerator = 0;
       denominator = 1;
     }
-    numerator = nume;
-    denominator = deno;
     reduce();
   }
 
@@ -26,36 +27,65 @@ public class RationalNumber extends RealNumber{
     return numerator == other.getNumer() && denominator == other.getDeno();
   }
 
-  public double getN() {
+  public double getValue() {
     return numerator / (double) denominator;
   }
 
-  public String toString() {
-    return "";
-  }
   private static int gcd(int a, int b) {
-    int s = 0;
     int r = 1;
-    if (a < b) {
-      s = a;
-      a = b;
-      b = s;
-    }
-    while (r != 0) {
-      r = a % b;
-      if (r == 0){
-        return b;
-      }
-      a = b;
-      b = r;
+    int x = Math.max(Math.abs(a), Math.abs(b));
+    int y = Math.min(Math.abs(a), Math.abs(b));
+    r = x % y;
+    if (r == 0) {
+      return y;
+    } else {
+      return gcd(y, r);
     }
   }
+
   private void reduce() {
     int numer = getNumer();
     numerator = numerator / gcd(numer, denominator);
     denominator = denominator / gcd(numer, denominator);
   }
-  
 
+  public RationalNumber add(RationalNumber other) {
+    RationalNumber x = new RationalNumber(
+    this.getNumer() * other.getDeno() +
+    other.getNumer() * this.getDeno(),
+    this.getDeno() * other.getDeno()
+    );
+    return x;
+  }
 
+  public RationalNumber subtract(RationalNumber other) {
+    RationalNumber x = new RationalNumber(
+    this.getNumer() * other.getDeno() -
+    other.getNumer() * this.getDeno(),
+    this.getDeno() * other.getDeno()
+    );
+    return x;
+  }
+
+  public RationalNumber multiply(RationalNumber other) {
+    RationalNumber x = new RationalNumber(
+    this.getNumer() * other.getNumer(),
+    this.getDeno() * other.getDeno()
+    );
+    return x;
+  }
+
+  public RationalNumber divide(RationalNumber other) {
+    return this.multiply(other.reciprocal());
+  }
+
+  public String toString() {
+    if (denominator == 1 || numerator == 0) {
+      return ""+numerator;
+    }
+    if ((denominator < 0 && numerator > 0) || (denominator < 0 && numerator < 0)) {
+      return -1 * numerator + "/" + -1 * denominator;
+    }
+    return numerator + "/" + denominator;
+  }
 }
